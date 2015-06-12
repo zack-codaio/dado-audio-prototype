@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        td{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!--<h4 onclick="start_looping();" id="startbutton">-->
+    <!--Start-->
+<!--</h4>-->
+
+<h4 onclick="toggle_looping();" id="Looper">
+    Looping = ON
+</h4>
+
+<h4 onclick="set_speed(0.5)">Slow</h4>
+<h4 onclick="set_speed(1)">Medium</h4>
+<h4 onclick="set_speed(2)">Fast</h4>
+
+
+<table style="width:100%">
+    <tr>
+        <th>50 Left</th>
+        <th>25 Left</th>
+        <th>Center</th>
+        <th>25 Right</th>
+        <th>50 Right</th>
+    </tr>
+    <tr>
+        <td onclick="play_audio('L50_0.wav')">Near</td>
+        <td onclick="play_audio('L25_0.wav')">Near</td>
+        <td onclick="play_audio('C_0.wav')">Near</td>
+        <td onclick="play_audio('R25_0.wav')">Near</td>
+        <td onclick="play_audio('R50_0.wav')">Near</td>
+    </tr>
+    <tr>
+        <td onclick="play_audio('L50_50.wav')">Mid</td>
+        <td onclick="play_audio('L25_50.wav')">Mid</td>
+        <td onclick="play_audio('C_50.wav')">Mid</td>
+        <td onclick="play_audio('R25_50.wav')">Mid</td>
+        <td onclick="play_audio('R50_50.wav')">Mid</td>
+    </tr>
+    <tr>
+        <td onclick="play_audio('L50_100.wav')">Far</td>
+        <td onclick="play_audio('L25_100.wav')">Far</td>
+        <td onclick="play_audio('C_100.wav')">Far</td>
+        <td onclick="play_audio('R25_100.wav')">Far</td>
+        <td onclick="play_audio('R50_100.wav')">Far</td>
+    </tr>
+</table>
+
+<audio id="playme" src="locationpings/R50_100" controls="controls"></audio>
+
+<script>
+    var repeat = 1;
+
+    var looper = document.getElementById("Looper");
+
+    function toggle_looping(){
+        repeat = !repeat;
+        console.log(this);
+        if(repeat){
+            looper.innerHTML = "Looping = ON";
+        }
+        else{
+            looper.innerHTML = "Looping = OFF";
+        }
+    }
+
+
+    var audio = document.getElementById("playme");
+
+    function play_audio(file){
+
+        var source = 'locationpings/' + file;
+        audio.src = source;
+        console.log(source);
+//        audio.load();
+        if(repeat){
+            audio.loop = true;
+        }
+        audio.play();
+    }
+
+    function set_audio(file){
+        var source = 'locationpings/' + file;
+        audio.src = source;
+    }
+
+    function start_looping(){
+        audio.loop = true;
+        setInterval(function(){
+            audio.play();
+        }, 1000)
+    }
+
+    function set_speed(speed){
+        audio.defaultPlaybackRate = speed;
+        console.log(audio.defaultPlaybackRate);
+        audio.load();
+        audio.play();
+    }
+
+</script>
+
+
+
+</body>
+</html>
