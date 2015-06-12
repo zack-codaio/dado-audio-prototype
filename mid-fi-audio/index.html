@@ -31,34 +31,39 @@
     <tr>
         <th>50 Left</th>
         <th>25 Left</th>
-        <th>Center</th>
+        <th>Front</th>
+        <th>Back</th>
         <th>25 Right</th>
         <th>50 Right</th>
     </tr>
     <tr>
         <td onclick="play_audio('L50_0.wav')">Near</td>
         <td onclick="play_audio('L25_0.wav')">Near</td>
-        <td onclick="play_audio('C_0.wav')">Near</td>
+        <td onclick="play_audio('B_0.wav')">Near</td>
+        <td onclick="play_audio('F_0.wav')">Near</td>
         <td onclick="play_audio('R25_0.wav')">Near</td>
         <td onclick="play_audio('R50_0.wav')">Near</td>
     </tr>
     <tr>
         <td onclick="play_audio('L50_50.wav')">Mid</td>
         <td onclick="play_audio('L25_50.wav')">Mid</td>
-        <td onclick="play_audio('C_50.wav')">Mid</td>
+        <td onclick="play_audio('B_50.wav')">Mid</td>
+        <td onclick="play_audio('F_50.wav')">Mid</td>
         <td onclick="play_audio('R25_50.wav')">Mid</td>
         <td onclick="play_audio('R50_50.wav')">Mid</td>
     </tr>
     <tr>
         <td onclick="play_audio('L50_100.wav')">Far</td>
         <td onclick="play_audio('L25_100.wav')">Far</td>
-        <td onclick="play_audio('C_100.wav')">Far</td>
+        <td onclick="play_audio('B_100.wav')">Far</td>
+        <td onclick="play_audio('F_100.wav')">Far</td>
         <td onclick="play_audio('R25_100.wav')">Far</td>
         <td onclick="play_audio('R50_100.wav')">Far</td>
     </tr>
 </table>
 
 <audio id="playme" src="locationpings/R50_100" controls="controls"></audio>
+<audio id="myPing" src="locationpings/M_0.wav" controls="controls"></audio>
 
 <script>
     var repeat = true;
@@ -80,6 +85,9 @@
 
 
     var audio = document.getElementById("playme");
+    var myPing = document.getElementById("myPing");
+    myPing.loop = false;
+//    myPing.play();
 
     function play_audio(file){
 
@@ -93,7 +101,11 @@
         else{
             audio.loop = false;
         }
-        audio.play();
+        myPing.play();
+        setTimeout(function(){
+            audio.play();
+        }, 200);
+
     }
 
     function set_audio(file){
