@@ -61,19 +61,21 @@
 <audio id="playme" src="locationpings/R50_100" controls="controls"></audio>
 
 <script>
-    var repeat = 1;
+    var repeat = true;
 
     var looper = document.getElementById("Looper");
 
     function toggle_looping(){
         repeat = !repeat;
-        console.log(this);
+        console.log("repeat: " +repeat);
+
         if(repeat){
             looper.innerHTML = "Looping = ON";
         }
         else{
             looper.innerHTML = "Looping = OFF";
         }
+        audio.load();
     }
 
 
@@ -87,6 +89,9 @@
 //        audio.load();
         if(repeat){
             audio.loop = true;
+        }
+        else{
+            audio.loop = false;
         }
         audio.play();
     }
